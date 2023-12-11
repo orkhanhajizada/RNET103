@@ -1,0 +1,70 @@
+
+# Docker Compose
+
+version: "3.7"
+services:
+  code-db:
+    container_name: code-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=orxan12gfb!
+    ports:
+      - "1434:1433" 
+    networks:
+      - code-network
+
+
+networks:
+  code-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
+
+
+# version: "3.7"
+# services:
+# code-db:
+# container_name: code-db
+# image: mcr.microsoft.com/mssql/server:2022-latest
+# environment:
+# - ACCEPT_EULA=Y
+# - SA_PASSWORD=Pro247!! # sa password
+# ports:
+# - "1434:1433" # port mapping 1. iç port (sql) 2. dış port (container port)
+# networks:
+# - code-network
+
+# # bu alana şimdilik ihtiyaç yoktur.
+# networks:
+# code-network:
+# driver: bridge
+# ipam:
+# config:
+# - subnet: 172.21.0.0/24
+# gateway: 172.21.0.1
+
+# code-api:
+# container_name: code-api
+# build: .
+# ports:
+# - "5000:80"
+# depends_on:
+# - code-db
+# networks:
+# - code-network
+
+# code-web:
+# container_name: code-web
+# build: ./client
+# ports:
+# - "3000:3000"
+# depends_on:
+# - code-api
+# networks:
+# - code-network
+
+
+
