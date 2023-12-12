@@ -1,4 +1,8 @@
-﻿await GetCity();
+﻿using Microsoft.Extensions.Configuration;
+
+
+await GetCity();
+
 
 static async Task GetCity()
 {
@@ -13,7 +17,18 @@ static async Task GetCity()
             continue;
         }
 
-        const string apiKey = "1bb300dcd9a775979470903c0afbefe3\n";
+        // const string apiKey = "1bb300dcd9a775979470903c0afbefe3\n";
+        // string json = File.ReadAllText("../../../appsettings.json");
+        // JObject jsonObject = JObject.Parse(json);
+        // string apiKey =  (string)jsonObject["AppSettings"]!["OpenWeatherMapApiKey"]!;
+
+        IConfiguration configuration = new ConfigurationBuilder()
+            .AddJsonFile("/Users/orkhanhajizada/Desktop/RNET103/WEEK 2/12.12.2023/WeatherForecast/appsettings.json",
+                optional: true, reloadOnChange: true)
+            .Build();
+
+        var apiKey = configuration["AppSettings:OpenWeatherMapApiKey"];
+
 
         var weatherData = await GetWeatherData(cityName!, apiKey);
 
@@ -55,7 +70,7 @@ static void ProcessAndDisplayWeatherData(string? weatherData)
     dynamic jsonData = Newtonsoft.Json.JsonConvert.DeserializeObject(weatherData) ??
                        throw new InvalidOperationException();
     var temperatureKelvin = Math.Round((double)jsonData["main"]["temp"]);
-    var temperature =Math.Round(temperatureKelvin - 273.15);
+    var temperature = Math.Round(temperatureKelvin - 273.15);
     var weatherDescription = jsonData.weather[0].description;
     double windSpeed = jsonData.wind.speed;
 
@@ -71,11 +86,10 @@ static void ProcessAndDisplayWeatherData(string? weatherData)
 static void GiveAdvice(int temperature, string weatherDescription, int windSpeed)
 {
     Console.WriteLine("Clothing advice");
-    
+
     if (temperature >= 30)
     {
         Console.WriteLine("Wear light clothing, use sunscreen and a hat.");
-
     }
     else if (temperature is >= 20 and < 30)
     {
@@ -92,18 +106,17 @@ static void GiveAdvice(int temperature, string weatherDescription, int windSpeed
     else
     {
         Console.WriteLine("Dress warmly and wear non-slip shoes.");
-
     }
 
     Console.WriteLine("Activity advice");
-    
+
     switch (weatherDescription.ToLower())
     {
         case var desc when desc.Contains("clear sky"):
-            Console.WriteLine("Great weather for a picnic and lots of beer");
+            Console.WriteLine("It's a great day to go out and play sports.");
             break;
-        case var desc when desc.Contains("overcast clouds"):
-            Console.WriteLine("you can play billiards or bowling because it might rain");
+        case var desc when desc.Contains("clouds"):
+            Console.WriteLine("You can play billiards or bowling because it might rain");
             break;
         case var desc when desc.Contains("drizzle"):
             Console.WriteLine("It's drizzling. Read a book at home or coffeshop.");
@@ -120,7 +133,7 @@ static void GiveAdvice(int temperature, string weatherDescription, int windSpeed
     }
 
     Console.WriteLine("Wind advice");
-    
+
     switch (windSpeed)
     {
         case > 20:
@@ -134,6 +147,3 @@ static void GiveAdvice(int temperature, string weatherDescription, int windSpeed
             break;
     }
 }
-
-
-
