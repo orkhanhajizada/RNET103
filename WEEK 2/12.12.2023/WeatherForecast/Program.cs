@@ -30,7 +30,7 @@ static async Task GetCity()
         var apiKey = configuration["AppSettings:OpenWeatherMapApiKey"];
 
 
-        var weatherData = await GetWeatherData(cityName!, apiKey);
+        var weatherData = await GetWeatherData(cityName, apiKey!);
 
         if (!string.IsNullOrEmpty(weatherData))
         {
