@@ -172,10 +172,10 @@
 // }
 
 
-string input = "text";
-string input2 = "text2";
-
-string numbs = "5555599999";
+// string input = "text";
+// string input2 = "text2";
+//
+// string numbs = "5555599999";
 
 // Console.WriteLine(string.Compare(input, input2));
 
@@ -184,10 +184,29 @@ string numbs = "5555599999";
 // Console.WriteLine(input.GetType());
 // Console.WriteLine(input.GetType().Name);
 // Console.WriteLine(input.GetTypeCode());
-Console.WriteLine(numbs.Remove(5,5));
+// Console.WriteLine(numbs.Remove(5,5));
 
 // Console.WriteLine(input.Contains(input2));
 
+
+
+//*
+// **
+// ***
+// ****
+// *****
+// ******
+// *******
+
+
+for (var i = 0; i < 7; i++)
+{
+    for (var j = 0; j < i; j++)
+    {
+        Console.Write("*");
+    }
+    Console.WriteLine();
+}
 
 
 
