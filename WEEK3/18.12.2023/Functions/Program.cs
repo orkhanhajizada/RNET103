@@ -1,4 +1,18 @@
-﻿ // void Method1()
+﻿
+
+MyClass object1 = new();
+MyClass object2 = object1; 
+
+Console.WriteLine(ReferenceEquals(object1, object2));
+
+
+class MyClass
+{
+}
+
+
+#region MyRegion
+// void Method1()
  // {
  //     Console.WriteLine("Method1");
  // }
@@ -50,9 +64,6 @@
  // internal class Program
  //     {
          
-         /// <summary>
-         /// Creates an email address from the specified first name, last name, and domain.
-         /// </summary>
          
          // public static void CreateEmail(string firstName, string domain)
          // {
@@ -121,13 +132,15 @@
  // }
  
  
- using Mehriban;
-
- MailHelper mailHelper = new MailHelper(); 
- var result = mailHelper.SendMail("Welcome", 
-                    "Hello RNET103", 
-                    "h.orkhan1907@gmail.com", 
-                    "to", 
-                    "rnet9736@gmail.com", 
-                    true);
- Console.WriteLine(result);
+ // using Mehriban;
+ //
+ // MailHelper mailHelper = new MailHelper(); 
+ // var result = mailHelper.SendMail("Welcome", 
+ //                    "Hello RNET103", 
+ //                    "h.orkhan1907@gmail.com", 
+ //                    "to", 
+ //                    "rnet9736@gmail.com", 
+ //                    true);
+ // Console.WriteLine(result);
+ 
+ #endregion 
