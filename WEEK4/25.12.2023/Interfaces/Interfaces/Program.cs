@@ -134,104 +134,126 @@
 
 #region Enum
 
-// using Interfaces.Enums;
-// using Interfaces.Models;
-//
-// namespace Interfaces;
-//
-// public class Program
-// {
-//     public static void Update(Employee employee)
-//     {
-//         employee.Status = Status.UpdatedAndActive; // -> UpdatedAndActive
-//     }
-//     
-//     public static void Delete(Employee employee)
-//     {
-//         employee.Status = Status.Deleted; // -> Deleted
-//     }
-//
-//     public static void Main()
-//     {
-//         var employee = new Models.Employee
-//         {
-//             Id = 1,
-//             Name = "Volkan",
-//             Surname = "Demirel",
-//             Status = Status.Actice, // -> Active
-//             Department = Department.It
-//             
-//         };
-//
-//         var updated = employee;
-//         updated.Name = "Volkan2";
-//         Update(updated);
-//         // Console.WriteLine(Enum.GetName(updated.Department));
-//         // Console.WriteLine(employee.Status);
-//
-//         // foreach (var item in Enum.GetValues<Department>())
-//         // {
-//         //     Console.WriteLine(item);
-//         // }
-//         
-//         // foreach (var item in Enum.GetNames(typeof(Department)))
-//         // {
-//         //     Console.WriteLine(item);
-//         // }
-//         foreach (var item in Enum.GetValues(typeof(Department)))
-//         {
-//             Console.WriteLine((int)item);
-//         }
-//     }
-// }
+using Interfaces.Enums;
+using Interfaces.Models;
+
+namespace Interfaces;
+
+public class Program
+{
+    public static void Update(Employee employee)
+    {
+        employee.Status = Status.UpdatedAndActive; // -> UpdatedAndActive
+    }
+    
+    public static void Delete(Employee employee)
+    {
+        employee.Status = Status.Deleted; // -> Deleted
+    }
+
+    public static void Main()
+    {
+        var employee = new Models.Employee
+        {
+            Id = 1,
+            Name = "Volkan",
+            Surname = "Demirel",
+            Status = Status.Actice, // -> Active
+            Department = Department.It
+            
+        };
+
+        var updated = employee;
+        updated.Name = "Volkan2";
+        updated.Permission = Izinler.Okuma | Izinler.Yazma | Izinler.Silme | Izinler.Duzenleme;
+        Update(updated);
+        // Console.WriteLine(Enum.GetName(updated.Department));
+        // Console.WriteLine(employee.Status);
+
+        // foreach (var item in Enum.GetValues<Department>())
+        // {
+        //     Console.WriteLine(item);
+        // }
+        
+        // foreach (var item in Enum.GetNames(typeof(Department)))
+        // {
+        //     Console.WriteLine(item);
+        // }
+        Console.Clear();
+
+        if(updated.Permission.HasFlag(Izinler.Okuma))
+            Console.WriteLine("Okuma izni var");
+        
+        if(updated.Permission.HasFlag(Izinler.Yazma))
+            Console.WriteLine("Yazma izni var");
+        
+        if(updated.Permission.HasFlag(Izinler.Silme))
+            Console.WriteLine("Silme izni var");
+        
+        if(updated.Permission.HasFlag(Izinler.Duzenleme))
+            Console.WriteLine("Duzenleme izni var");
+        
+        // foreach (var name in Enum.GetNames<Department>())
+        // {
+        //     Console.WriteLine(name);
+        // }
+
+        // ArgumentException.ThrowIfNullOrEmpty(Enum.IsDefined(typeof(Department), "It"));
+        
+        
+        // Console.WriteLine(Enum.IsDefined(typeof(Department), "It") ? "Var" : "Yok");
+    }
+}
 
 #endregion
 
 
 #region Lab
 
-using System.ComponentModel.DataAnnotations;
-using System.Reflection;
-using Interfaces.Enums;
-
-namespace Interfaces;
-
-public class Program()
-{
-    public static void Main()
-    {
-        Console.WriteLine("Database sechiniz: ");
-        Console.WriteLine("1- PostgreSql");
-        Console.WriteLine("2- SqlServer");
-        Console.WriteLine("3- Oracle");
-        Console.WriteLine("4- MySql");
-        
-        var secim = Console.ReadLine();
-        var secimInt = Convert.ToInt32(secim);
-        var secimEnum = (SqlConnections)secimInt;
-        var connection = GetDisplayName(secimEnum);
-        Console.WriteLine(connection);
-        
-    }
-    private static string GetDisplayName(Enum enumValue)
-    {
-        var displayName = enumValue.GetType()
-            .GetMember(enumValue.ToString())
-            .FirstOrDefault()!
-            .GetCustomAttribute<DisplayAttribute>()?
-            .GetName()!;
-        if (string.IsNullOrEmpty(displayName))
-        {
-            displayName = enumValue.ToString();
-        }
-        return displayName;
-    }
+// using System.ComponentModel.DataAnnotations;
+// using System.Reflection;
+// using Interfaces.Enums;
+//
+// namespace Interfaces;
+//
+// public class Program()
+// {
+//     public static void Main()
+//     {
+//         Console.WriteLine("Database sechiniz: ");
+//         Console.WriteLine("1- PostgreSql");
+//         Console.WriteLine("2- SqlServer");
+//         Console.WriteLine("3- Oracle");
+//         Console.WriteLine("4- MySql");
+//         
+//         var secim = Console.ReadLine();
+//         var secimInt = Convert.ToInt32(secim);
+//         var secimEnum = (SqlConnections)secimInt;
+//         var connection = GetDisplayName(secimEnum);
+//         Console.WriteLine(connection);
+//         
+//     }
+//     private static string GetDisplayName(Enum enumValue)
+//     {
+//         var displayName = enumValue.GetType()
+//             .GetMember(enumValue.ToString())
+//             .FirstOrDefault()!
+//             .GetCustomAttribute<DisplayAttribute>()?
+//             .GetName()!;
+//         if (string.IsNullOrEmpty(displayName))
+//         {
+//             displayName = enumValue.ToString();
+//         }
+//         return displayName;
+//     }
     
     // public void DisplayName()
     // {
     //     var sqlName = SqlConnections.GetAttribute<DisplayAttribute>();
     //     Console.WriteLine (sqlName.Name);
     // } 
-}
+// }
 
 #endregion
+
+

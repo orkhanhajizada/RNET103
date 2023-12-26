@@ -9,4 +9,5 @@ public class Employee
     public string? Surname { get; set; }
     public Status Status { get; set; }
     public Department Department { get; set; }
+    public Izinler Permission { get; set; }
 }
