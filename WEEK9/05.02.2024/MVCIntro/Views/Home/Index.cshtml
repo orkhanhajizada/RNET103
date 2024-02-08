@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@DateTime.Now.Year
+
+@{
+    string[] citiler =
+    {
+        "Ankara",
+        "İstanbul",
+        "İzmir",
+        "Adana",
+    };
+
+    string firstName = "Mehmet";
+    string lastName = "Kaya";
+}
+
+@{
+    string mail = "h.orkhan1907@gmail.com";
+    string phone = "0555 555 55 55";
+    string address = "Ankara";
+    string fullName = firstName + " " + lastName;
+}
+
+<ul>
+    @for (int i = 0; i < citiler.Length; i++)
+    {
+        <li class="list-group-item">
+            @(i + 1) @citiler[i] <span class="float-end badge text-warning"> for</span>
+        </li>
+    }
+
+    @foreach (var item in citiler)
+    {
+        <li class="list-group-item">
+            @item <span class="float-end badge text-warning"> foreach</span>
+        </li>
+    }
+
+    @{
+        int index = 0;
+        while (index < citiler.Length)
+        {
+            <li class="list-group-item">
+                @(index + 1) @citiler[index] <span class="float-end badge text-danger"> while</span>
+            </li>
+            index++;
+        }
+    }
+
+    @{
+        index = 0;
+    }
+
+    @do
+    {
+        <li class="list-group-item">
+            @(index + 1) @citiler[index] <span class="float-end badge text-danger"> do-while</span>
+        </li>
+        index++;
+    } while (index < citiler.Length);
+</ul>

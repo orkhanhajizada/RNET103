@@ -1,0 +1,44 @@
+@model CategoryVm
+
+<div class="row justify-content-center">
+    <div class="col-6 p-3 shadow-sm rounded">
+        <form method="post">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Category name</label>
+                <input name="categoryName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Enter category name</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Desc</label>
+                <textarea name="description"  cols="5" rows="5" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-6 p-3 rounded shadow-sm">
+        <table class="table table-hover">
+            <caption>Data transfer to view</caption>
+            <thead>
+            <tr>
+                <th>Kategori ID</th>
+                <th> Kategori adi</th>
+                <th>Aciklama</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Categories)
+            {
+                <tr>
+                    <td>@item.CategoryID</td>
+                    <td>@item.CategoryName</td>
+                    <td>@item.Description</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
