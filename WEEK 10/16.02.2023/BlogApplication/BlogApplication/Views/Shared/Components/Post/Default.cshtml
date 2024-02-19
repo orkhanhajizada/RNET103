@@ -1,0 +1,80 @@
+﻿@model Post
+
+<!--Post Entry 3 Start-->
+<article class="post-type-slide">
+
+    <!--Post Image-->
+    <div class="post-img">
+        <div class="post-list-category">
+            <ul>
+                <li><a href="#">Vestibulum</a></li>
+                <li><a href="#">Aenean</a></li>
+            </ul>
+        </div>
+
+        <!--Post List Slide Start-->
+        <div class="post-list-slide">
+            <div class="flexslider">
+                <ul class="slides">
+
+                    @foreach (Image img in Model.Images)
+                    {
+                        <li>
+                            <a class="fancybox" data-fancybox-group="group2"
+                               href="~/images/posts/@img.ImageUrl">
+                                <figure>
+                                    <div class="overlay-hover"></div>
+                                    <img src="~/images/posts/@img.ImageUrl"
+                                         alt="post slide" />
+                                </figure>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <!--Post List Slide End-->
+
+    </div>
+
+    <!--Slide Custom Nav Start-->
+    <div class="flexControl-custom">
+        <ol class="flexControl-custom-nav">
+            @foreach (Image img in Model.Images)
+            { 
+                <li></li>
+            }
+        </ol>
+    </div>
+    <!--Slide Custom Nav End-->
+    <!--Post Entry-->
+    <div class="post-entry">
+        <h2><a href="#">@Model.Title</a></h2>
+        <div class="post-description">
+            <p>
+                @Model.Content
+            </p>
+        </div>
+        <div class="post-meta">
+            <ul>
+                <li><a href="#">@Model.CreatedDate.Value.ToString("dd/MM/yyyy hh:mm")</a></li>
+                <li><a href="#">@Model.Author</a></li>
+                <li><a href="#">Comments<span>4</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!--Post Share-->
+    <div class="post-share">
+        <div class="read-more-btn"><a href="#">Read more</a></div>
+        <div class="share-btn">Share</div>
+        <ul class="share-standard">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-google"></i></a></li>
+            <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+        </ul>
+    </div>
+
+</article>
+<!--Post Entry 3 End-->

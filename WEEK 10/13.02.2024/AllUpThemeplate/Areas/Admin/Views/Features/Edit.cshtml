@@ -1,0 +1,61 @@
+@model Feature
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Feature</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Index</li>
+        </ol>
+        <div class="row">
+
+            <div class="col-xl-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-plus me-1"></i>
+                        Edit feature
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Title" class="control-label"></label>
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <label asp-for="Description" class="control-label"></label>
+                                <input asp-for="Description" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <label asp-for="ImageUrl" class="control-label"></label>
+                                <input asp-for="ImageUrl" class="form-control" />
+                                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                            </div>
+                            
+
+                            <div class="form-group">
+
+                                <button class="btn btn-success btn-sm float-end" type="submit">
+                                    <i class="fas fa-plus"></i> Save
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <a asp-area="admin" asp-controller="Features" asp-action="index">Back to List</a>
+        </div>
+    </div>
+</main>

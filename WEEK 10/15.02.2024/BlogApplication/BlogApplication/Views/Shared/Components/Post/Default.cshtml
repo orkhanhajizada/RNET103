@@ -1,0 +1,115 @@
+@model List<Post>
+
+
+@foreach (var post in Model)
+{
+    <article class="post-type-slide">
+
+        <!--Post Image-->
+        <div class="post-img">
+            <div class="post-list-category">
+                <ul>
+                    <li>
+                        <a href="#">Vestibulum</a>
+                    </li>
+                    <li>
+                        <a href="#">Aenean</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--Post List Slide Start-->
+            <div class="post-list-slide">
+                <div class="flexslider">
+                    <ul class="slides">
+
+                        <!--Slide 1-->
+                        @foreach (var image in post.Images)
+                        {
+                            <li>
+                                <a class="fancybox" data-fancybox-group="group2" href="@image.ImageUrl">
+                                    <figure>
+                                        <div class="overlay-hover"></div>
+                                        <img src="~/images/posts/@image.ImageUrl" alt="post slide"/>
+                                    </figure>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <!--Post List Slide End-->
+
+        </div>
+
+        <!--Slide Custom Nav Start-->
+        <div class="flexControl-custom">
+            <ol class="flexControl-custom-nav">
+                @foreach (var image in post.Images)
+                {
+                    <li></li>
+                }
+            </ol>
+        </div>
+        <!--Slide Custom Nav End-->
+
+        <!--Post Entry-->
+        <div class="post-entry">
+            <h2>
+                <a href="#">@post.Title</a>
+            </h2>
+            <div class="post-description">
+                <p>@post.Content</p>
+            </div>
+            <div class="post-meta">
+                <ul>
+                    <li>
+                        <a href="#">@post.CreatedDate</a>
+                    </li>
+                    <li>
+                        <a href="#">@post.Author</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Comments
+                            <span>
+                                    @post.Comments?.Count
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--Post Share-->
+        <div class="post-share">
+            <div class="read-more-btn">
+                <a href="#">Read more</a>
+            </div>
+            <div class="share-btn">Share</div>
+            <ul class="share-standard">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-google"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-pinterest-p"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </article>
+}

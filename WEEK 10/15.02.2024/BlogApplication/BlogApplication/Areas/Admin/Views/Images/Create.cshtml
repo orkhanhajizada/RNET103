@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+@model int
+
+@section js {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.js"></script>
+    <script> 
+        const id = @Model;  // eğer id değeriniz guid ise, '@Model'
+        let dropzone = Dropzone.options.myDropzone = {
+            url: `/admin/images/upload/${id}`,
+            autoProcessQueue: true,
+            clickable: true,
+            addRemoveLinks: true,
+            init: function () {
+                this.on('addedfile', function (file) {
+                    console.log('file added', file)
+                })
+
+
+                this.on('complete', function (file) {
+                    console.log('dosya eklendi')
+                })
+            }
+        }
+    </script>
+}
+
+
+@section css {
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+    <style>
+        #myDropzone {
+            width: 100%;
+            min-height: 230px;
+            height: auto;
+            border: 2px dashed #007bff;
+            text-align: center;
+            padding: 20px;
+            margin: 20px auto;
+            position: relative;
+            border-radius: 10px;
+            background-color: #F0F0F0;
+        }
+    </style>
+}
+
+
+
+
+<main>
+    <div class="container-fluid px-4">
+        <div class="row">
+            <div class="col">
+                <div class="dropzone" id="myDropzone">
+                    <img src="~/images/logo.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
