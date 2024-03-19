@@ -1,0 +1,59 @@
+﻿@model RoleDetailsVM
+<div class="row mt-5 shadow-sm p-5">
+    <div class="col-12 mb-3">
+        <h6 class="display-6">   @Model.Role.Name</h6>
+    </div>
+    <div class="col-6">
+        <div class="card border-0 shadow-sm p-1">
+            <div class="card-header border-success">
+                In Roles
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush" id="inRole">
+                    @foreach (var inRole in Model.Members)
+                    {
+                        <li class="list-group-item">@inRole.UserName</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card border-0 shadow-sm   p-1">
+            <div class="card-header border-danger">
+                Not In Roles
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush" id="notInRole">
+                    @foreach (var inRole in Model.NonMembers)
+                    {
+                        <li class="list-group-item">@inRole.UserName</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 mt-5">
+        <button class="btn btn-outline-dark float-end">Kaydet</button>
+    </div>
+</div>
+@section css {
+    <style>
+        .list-group {
+            cursor: pointer
+        }
+    </style>
+}
+@section js {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script>
+        $(document).on('click', '#inRole .list-group-item', function (event) {
+            $(this).appendTo('#notInRole')
+        })
+
+        $(document).on('click', '#notInRole .list-group-item', function (event) {
+            $(this).appendTo('#inRole')
+        })
+    </script>
+}

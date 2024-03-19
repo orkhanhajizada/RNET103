@@ -1,0 +1,11 @@
+global using CategoryApi.Data;
+global using CategoryApi;
+global using CategoryApi.Models;
+global using CategoryApi.Services;
+global using CategoryApi.Configurations;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Design;
+global using Microsoft.EntityFrameworkCore.SqlServer;
+global using System.Threading.Tasks;
+global using StackExchange.Redis;
+global using Microsoft.AspNetCore.Mvc;

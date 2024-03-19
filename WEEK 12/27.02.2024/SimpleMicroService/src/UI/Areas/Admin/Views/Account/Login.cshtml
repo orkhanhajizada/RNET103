@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+}
+@model LoginUser
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Yinka Enoch Adedokun">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="~/css/admin.css">
+</head>
+<body>
+<!-- Main Content -->
+<div class="login-page">
+  <div class="form">
+    <form class="register-form">
+      <input type="text" placeholder="name" asp-for="UserName" id="username"/>
+      <input type="password" placeholder="password" asp-for="Password" id="password"/>
+      <input type="checkbox" placeholder="" asp-for="RememberMe" id="remember_me"/>
+      <label>Remember Me</label>
+      <button>create</button>
+    </form>
+    <form class="login-form">
+      <input type="text" placeholder="username"/>
+      <input type="password" placeholder="password"/>
+      <button>login</button>
+    </form>
+  </div>
+</div>
+</body>
